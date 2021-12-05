@@ -63,6 +63,8 @@
 		<Logger level="${env:logger.misc1.level:-DEBUG}" name="${env:logger.misc1.name:-override.me}"/>
 		<Logger level="${env:logger.misc2.level:-DEBUG}" name="${env:logger.misc2.name:-override.me}"/>
 		<Logger level="${env:logger.misc3.level:-DEBUG}" name="${env:logger.misc3.name:-override.me}"/>
+		
+		<Logger level="TRACE" name="org.openhab.binding.proxmox"/>
 
 		<Logger level="ERROR" name="openhab.event.ItemStateEvent"/>
 		<Logger level="ERROR" name="openhab.event.ItemAddedEvent"/>

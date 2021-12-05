@@ -66,7 +66,8 @@ feature.openhab-model-runtime-all: \
 	bnd.identity;id='org.openhab.ui.iconset.classic',\
 	bnd.identity;id='org.apache.aries.jax.rs.whiteboard',\
 	bnd.identity;id='org.ops4j.pax.web.pax-web-extender-whiteboard',\
-	bnd.identity;id='com.sun.xml.bind.jaxb-osgi'
+	bnd.identity;id='com.sun.xml.bind.jaxb-osgi',\
+	bnd.identity;id='org.openhab.binding.proxmox'
 
 -runfw: org.eclipse.osgi
 
@@ -212,7 +213,6 @@ feature.openhab-model-runtime-all: \
 	org.ops4j.pax.web.pax-web-jetty;version='[7.3.19,7.3.20)',\
 	org.ops4j.pax.web.pax-web-runtime;version='[7.3.19,7.3.20)',\
 	org.ops4j.pax.web.pax-web-spi;version='[7.3.19,7.3.20)',\
-	org.osgi.service.cm;version='[1.6.0,1.6.1)',\
 	org.osgi.service.event;version='[1.4.0,1.4.1)',\
 	org.osgi.service.jaxrs;version='[1.0.0,1.0.1)',\
 	org.osgi.service.metatype;version='[1.4.0,1.4.1)',\
@@ -279,4 +279,5 @@ feature.openhab-model-runtime-all: \
 	org.openhab.core.voice;version='[3.2.0,3.2.1)',\
 	org.openhab.ui;version='[3.2.0,3.2.1)',\
 	org.openhab.ui.basic;version='[3.2.0,3.2.1)',\
-	org.openhab.ui.iconset.classic;version='[3.2.0,3.2.1)'
+	org.openhab.ui.iconset.classic;version='[3.2.0,3.2.1)',\
+	org.openhab.binding.proxmox;version='[3.2.0,3.2.1)'
