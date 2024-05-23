@@ -19,10 +19,10 @@ org.apache.karaf.command.acl.scope_bundle.cfg
 org.apache.karaf.command.acl.shell.cfg
 org.apache.karaf.command.acl.system.cfg
 org.apache.karaf.features.cfg
+org.apache.karaf.features.xml
 org.apache.karaf.features.repos.cfg
 org.apache.karaf.jaas.cfg
 org.apache.karaf.kar.cfg
-org.apache.karaf.log.cfg
 org.apache.karaf.shell.cfg
 org.jupnp.cfg
 org.ops4j.pax.url.mvn.cfg

@@ -491,8 +491,8 @@ Function Update-openHAB() {
 
     # Create the proper download URLs
     if ($Snapshot) {
-        $DownloadLocation="https://ci.openhab.org/job/openHAB3-Distribution/lastSuccessfulBuild/artifact/distributions/openhab/target/openhab-$OHVersionName.zip"
-        $AddonsDownloadLocation="https://ci.openhab.org/job/openHAB3-Distribution/lastSuccessfulBuild/artifact/distributions/openhab-addons/target/openhab-addons-$OHVersionName.kar"
+        $DownloadLocation="https://ci.openhab.org/job/openHAB-Distribution/lastSuccessfulBuild/artifact/distributions/openhab/target/openhab-$OHVersionName.zip"
+        $AddonsDownloadLocation="https://ci.openhab.org/job/openHAB-Distribution/lastSuccessfulBuild/artifact/distributions/openhab-addons/target/openhab-addons-$OHVersionName.kar"
     }
     elseif ($Milestone -ne "") {
         $DownloadLocation="https://www.openhab.org/download/milestones/org/openhab/distro/openhab/$OHVersionName/openhab-$OHVersionName.zip"
@@ -743,6 +743,13 @@ Function Update-openHAB() {
             return PrintAndThrow "Could not delete the $OHUserData\tmp directory" $_
         }
 
+        try {
+            Write-Host -ForegroundColor Cyan "Removing $OHUserData\marketplace"
+            DeleteIfExists "$OHUserData\marketplace" $True
+        } catch {
+            return PrintAndThrow "Could not delete the $OHUserData\marketplace directory" $_
+        }
+
         ############## STEP 4 - copy files from temporary to distribution WITHOUT replacement
         Write-Host -ForegroundColor Cyan "Copying $TempDistribution to $OHDirectory without overwriting existing ones"
         try {
@@ -799,6 +806,14 @@ Function Update-openHAB() {
             return PrintAndThrow "Could not replace the $AddonsFile" $_
         }
 
+        # Now run the upgrade tool to update the JSON database
+        Write-Host "Starting JSON database update..."
+        java -jar "$OHRuntime\bin\upgradetool.jar"
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "Update tool failed, please check the openHAB website (www.openhab.org) for manual update instructions."
+        exit 1
+        }
+        Write-Host "JSON database updated successfully."
 
         # Hop for joy - we did it!
         Write-Host -ForegroundColor Green "openHAB updated to version $OHVersionName!"
